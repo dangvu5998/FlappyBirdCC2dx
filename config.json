@@ -1,0 +1,25 @@
+{
+    "init_cfg":{
+       "isLandscape": false,
+       "isWindowTop": false,
+       "name": "Flappy Bird Demon",
+       "width": 1080,
+       "height": 1920,
+       "entry": "main.js",
+       "consolePort": 6050,
+       "uploadPort": 6060,
+       "debugPort": 5086
+    },
+    "simulator_screen_size": [
+        {
+            "title": "Android (1280x720)",
+            "height": 1280,
+            "width": 720
+        },
+        {
+            "title": "Android (1920x1080)",
+            "height": 1920,
+            "width": 1080
+        }
+    ]
+}
