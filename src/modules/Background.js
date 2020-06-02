@@ -1,10 +1,12 @@
-var Background = cc.LayerColor.extend({
+var BackgroundLayer = cc.LayerColor.extend({
     dayColors : {
-        "day" : new cc.Color(78, 192, 202, 255),
-        "night" : new cc.Color(78, 192, 202, 255)
+        "DAY" : new cc.Color(78, 192, 202, 255),
+        "NIGHT" : new cc.Color(0, 135, 147, 255)
     },
     day : null,
     land : null,
+    DAY: 'DAY',
+    NIGHT: 'NIGHT',
 
     ctor : function (day) {
 
@@ -23,24 +25,25 @@ var Background = cc.LayerColor.extend({
     },
 
     addLand : function() {
-
         this.land = new cc.Sprite(
             res.BACKGROUND_PNG,
-            cc.rect(0, (this.day == 'night' ? 512 : 0), cc.winSize.width, 512)
+            cc.rect(0, (this.day == this.NIGHT ? 512 : 0), 512, 512)
         );
-
+        this.land.setScale(2.0);
         this.addChild(this.land, 0, 1);
-        this.land.setPosition(this.land.width/2, this.land.height/2);
+        //this.land.setPosition(this.land.width/2, this.land.height/2);
+        this.land.setPosition(this.land.width, this.land.height);
     },
 
     setDay : function(){
+        this.day = this.DAY;
 
-        var rand = parseInt(cc.rand() % 10);
+        var rand = Math.random();
 
-        if(rand != 5)
-            this.day = "day";
+        if(rand < 0.5)
+            this.day = this.DAY;
         else
-            this.day = "night";
+            this.day = this.NIGHT;
     },
 
     getDayColor : function() {

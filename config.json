@@ -7,8 +7,8 @@
        "height": 1920,
        "entry": "main.js",
        "consolePort": 6050,
-       "uploadPort": 6060,
-       "debugPort": 5086
+      "uploadPort": 6060,
+      "debugPort": 5086
     },
     "simulator_screen_size": [
         {

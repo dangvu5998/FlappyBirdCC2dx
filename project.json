@@ -20,6 +20,13 @@
     "jsList": [
         "src/data/Resource.js",
         "src/modules/Game.js",
-        "src/modules/Background.js"
+        "src/modules/Background.js",
+        "src/modules/GamePlay.js",
+        "src/modules/Bird.js",
+        "src/modules/Menu.js",
+        "src/modules/MainGame.js",
+        "src/modules/Ground.js",
+        "src/modules/Pipe.js"
+
     ]
 }
