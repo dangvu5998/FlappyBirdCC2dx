@@ -5,7 +5,10 @@ var BirdSprite = cc.Sprite.extend({
     type: BIRD_TYPE.BLUE_BIRD_FAT,
     currentRotation: 0,
     velocityY: 0,
-    gravity: 2,
+    gravity: 1,
+    flyUpVelocity: 15,
+    flyAction: null,
+    alive: true,
     ctor: function() {
         this._super();
         this.setPosition(cc.winSize.width / 2, cc.winSize.height / 2)
@@ -13,8 +16,9 @@ var BirdSprite = cc.Sprite.extend({
         this.animate();
     },
     animate: function() {
+        var spriteFrames;
         if (this.type === BIRD_TYPE.BLUE_BIRD_FAT) {
-            var spriteFrames = [
+            spriteFrames = [
                 new cc.SpriteFrame(res.BLUE_BIRD_FAT_1_PNG, cc.rect(0, 0, 700, 600)),
                 new cc.SpriteFrame(res.BLUE_BIRD_FAT_2_PNG, cc.rect(0, 0, 700, 600)),
                 new cc.SpriteFrame(res.BLUE_BIRD_FAT_3_PNG, cc.rect(0, 0, 700, 600)),
@@ -23,17 +27,29 @@ var BirdSprite = cc.Sprite.extend({
             this.setScale(0.1);
         }
         var animation = cc.Animation.createWithSpriteFrames(spriteFrames, 0.1);
-        var actionToRepeat = cc.Animate.create(animation);
-        this.runAction(cc.RepeatForever.create(actionToRepeat));
+        this.flyAction = cc.RepeatForever.create(cc.Animate.create(animation));
+        this.runAction(this.flyAction);
+        //this.runAction(this.flyAction);
+    },
+    setAlive: function (alive) {
+        if(this.alive && alive === false) {
+            this.stopAction(this.flyAction);
+            this.alive = false;
+        }
+        if(!this.alive && alive === true) {
+            this.runAction(this.flyAction);
+            this.alive = true;
+        }
+
     },
     updatePosition: function() {
         if(this.velocityY < 0) {
             this.currentRotation = this.velocityY * -2.5;
         }
         else {
-            this.currentRotation = this.velocityY * -0.5;
+            this.currentRotation = this.velocityY * -4.5;
         }
-        this.currentRotation = Math.max(-60, Math.min(40, this.currentRotation));
+        this.currentRotation = Math.max(-40, Math.min(40, this.currentRotation));
         this.setRotation(this.currentRotation);
         var newPositionY = this.getPositionY() + this.velocityY;
         if(newPositionY < 10) {
@@ -49,6 +65,6 @@ var BirdSprite = cc.Sprite.extend({
         this.velocityY = Math.max(-100, this.velocityY);
     },
     flyUp: function() {
-        this.velocityY = 25;
+        this.velocityY = this.flyUpVelocity;
     },
 })

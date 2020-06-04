@@ -19,6 +19,9 @@
     ],
     "jsList": [
         "src/data/Resource.js",
+        "src/modules/Utilities.js",
+        "src/modules/Score.js",
+        "src/modules/GameOver.js",
         "src/modules/Game.js",
         "src/modules/Background.js",
         "src/modules/GamePlay.js",
@@ -27,6 +30,5 @@
         "src/modules/MainGame.js",
         "src/modules/Ground.js",
         "src/modules/Pipe.js"
-
     ]
 }

@@ -10,6 +10,7 @@ var g_resources = [
     "res/images/bb-4.png",
     "res/images/base.png",
     "res/images/pipe-green.png",
+    "res/images/gui.png",
 ]
 
 var res = {
